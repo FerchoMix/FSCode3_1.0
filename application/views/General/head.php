@@ -14,7 +14,7 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
-	<title>Admin Dashboard</title>
+	<title><?PHP ECHO ($titulo)?></title>
 	
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="<?PHP ECHO BASE_URL(); ?>/Template/images/favicon.png">
