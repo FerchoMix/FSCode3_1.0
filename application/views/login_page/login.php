@@ -10,15 +10,16 @@
 									<div class="text-center mb-3">
 										<a href="index.html"><img src="<?PHP ECHO BASE_URL(); ?>/Template/images/logo.jpg" alt=""></a>
 									</div>
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
-                                    <form action="index.html">
-                                        <div class="mb-3">
+                                    <h4 class="text-center mb-4"><?php echo($mensaje); ?></h4>
+                                    <form method="POST" accept-charset="utf-8"  class="user text-left"  action="<?PHP ECHO BASE_URL('index.php/sesion/validarusuario')?>">
+                                        <div class="form-group">
                                             <label class="mb-1"><strong>Usuario</strong></label>
-                                            <input type="email" class="form-control" placeholder="hello@example.com">
+                                            <input type="text" class="form-control form-control-user" name="login" aria-describedby="emailHelp" placeholder="usuario0000" required>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="form-group">
                                             <label class="mb-1"><strong>Contraseña</strong></label>
-                                            <input type="password" class="form-control" placeholder="*******">
+                                            <input type="password" class="form-control form-control-user"
+                                            name="password" placeholder="*******" required>
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">
                                             <div class="mb-3">
