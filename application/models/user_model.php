@@ -20,4 +20,13 @@ class User_model extends CI_Model {
         $this->db->where('idUsuario',$user->getID());
 		return $this->db->get();
     }
+    // Mostrar la lista de usuarios
+    public function listUsuarios($user){
+		$this->db->select('idUsuario AS ID,ci AS CI,nombre AS Nombre,login AS Login,
+        apellidos AS Apellidos,fechaNac AS Fecha,telefono AS Telefono,tipo AS Tipo,estado AS Estado');
+        $this->db->from('usuarios');
+        $this->db->where_not_in('idUsuario',$user->getID());
+        $this->db->order_by('idUsuario');
+		return $this->db->get();
+	}
 }

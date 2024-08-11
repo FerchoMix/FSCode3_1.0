@@ -21,7 +21,11 @@
 	<link href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/nouislider/nouislider.min.css">
-	
+	<!-- Datatable -->
+    <link href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+	<link href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link href="<?PHP ECHO BASE_URL(); ?>/Template/css/style.css" rel="stylesheet">
 	<!-- Style css -->
     <link href="<?PHP ECHO BASE_URL(); ?>/Template/css/style.css" rel="stylesheet">
 	
