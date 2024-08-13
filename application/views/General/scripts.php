@@ -27,7 +27,7 @@
 	
 	<!-- Chart piety plugin files -->
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/peity/jquery.peity.min.js"></script>
-	<!-- Dashboard 1 -->
+	<!-- Dashboard 1
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dashboard/dashboard-1.js"></script>
 	
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/owl-carousel/owl.carousel.js"></script>
@@ -36,9 +36,19 @@
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dlabnav-init.js"></script>
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/demo.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/styleSwitcher.js"></script>
-	<script>
-    
-		function cardsCenter()
+ -->
+    <!-- Datatable -->
+  <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/plugins-init/datatables.init.js"></script>
+
+	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/custom.min.js"></script>
+	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dlabnav-init.js"></script>
+	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/demo.js"></script>
+    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/styleSwitcher.js"></script>
+		<script>
+    function cardsCenter()
 		{
 			
 			/*  testimonial one function by = owl.carousel.js */
@@ -84,16 +94,7 @@
 		});
 		
 	</script>
-  <!-- Datatable -->
-  <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/plugins-init/datatables.init.js"></script>
-
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/custom.min.js"></script>
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dlabnav-init.js"></script>
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/demo.js"></script>
-    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/styleSwitcher.js"></script>
+  
 
 </body>
 </html>

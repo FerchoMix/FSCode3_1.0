@@ -10,18 +10,7 @@
             <h4 class="m-0 font-weight-bold text-dark"><?PHP ECHO $respuesta; ?></h4>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-sm-7">
-                    <img  width="650" height="400" src="<?PHP ECHO BASE_URL(); ?>Template/images/FINSTER SYSTEMS.png">
-                </div>
-                <div class="col-sm-4">
-                    <h5>- Somos </h5>
-                    <hr>
-                    <h5>- Contamos</h5>
-                    <hr>
-                    <h5>- Como </h5>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

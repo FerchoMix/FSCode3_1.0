@@ -24,12 +24,38 @@ class User extends CI_Controller{
 		$lista = $this->sale_model->getStock();
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
+        $this->load->view('general/topbar.php',$top);
 		$this->load->view('sidebars/admin.php');
-		$this->load->view('general/topbar.php',$top);
+		
 		$this->load->view('users/lista_usuarios.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');   
     }
-
+    public function createuser(){
+            try{
+            $nuevo = new Usuario();
+            $nuevo->setApellido($_POST['apellidos']);
+            $nuevo->setNombre($_POST['nombres']);
+            $nuevo->setCI($_POST['carnet']);
+            $nuevo->setFechaNacimiento($_POST['fechaNacimiento']);
+            $nuevo->setTelefono($_POST['contacto']);
+            $nuevo->setTipo($_POST['tipo']);
+            $nuevo->setLogin(strtolower(substr($_POST['nombres'],0,3)).$_POST['carnet']);
+            $nuevo->setPassword(md5($nuevo->getLogin()));
+            $nuevo->setUsuario($this->session->userdata('idusuario'));
+            $users=$this->user_model->getUsersCi($nuevo);
+            if($users->num_rows()>0){
+                $this->session->set_flashdata('existe',TRUE);
+            }else{
+                $this->user_model->insertUser($nuevo);
+                $this->session->set_flashdata('nuevo',$nuevo->getLogin());
+            }
+            redirect('user/index','refresh');
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        } finally {
+            redirect('user','refresh');
+        }
+      } 
     
 }
