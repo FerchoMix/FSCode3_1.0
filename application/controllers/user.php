@@ -43,7 +43,12 @@ class User extends CI_Controller{
             $nuevo->setLogin(strtolower(substr($_POST['nombres'],0,3)).$_POST['carnet']);
             $nuevo->setPassword(md5($nuevo->getLogin()));
             $nuevo->setUsuario($this->session->userdata('idusuario'));
+            $nuevo->setFoto($this->session->userdata('foto'));
+            $nuevo->setEmail($_POST['correo']);
+            $nuevo->setGenero($_POST['gen']);
             $users=$this->user_model->getUsersCi($nuevo);
+            
+            
             if($users->num_rows()>0){
                 $this->session->set_flashdata('existe',TRUE);
             }else{

@@ -36,6 +36,8 @@
                                                 <th>Teléfono</th>
                                                 <th>Estado</th>
                                                 <th>Acceso</th>
+                                                <th>Genero</th>
+                                                <th>Email</th>
                                                  <th></th> 
                                             </tr>
                                         </thead>
@@ -44,7 +46,7 @@
                                             {
                                             ?>
                                             <tr>
-                                            <td><img class="rounded-circle" width="35" src="images/profile/small/pic10.jpg" alt=""></td>
+                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>/Template/<?php echo $row->Foto; ?>" alt=""></td>
                         <td><?php echo $row->CI; ?></td>
                         <td><?php echo $row->Login; ?></td>
                         <td><?php echo $row->Nombre; ?></td>
@@ -63,6 +65,8 @@
                                 ?>
                         <td><?php echo formatoEstado($row->Estado); ?></td>
                         <td><?php echo $tipo; ?></td>
+                        <td><?php echo $row->Genero; ?></td>
+                        <td><?php echo $row->Email; ?></td>
                         <td>
 													<div class="d-flex">
 														<a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
@@ -145,7 +149,7 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="email" class="form-control form-control-user" name="email"
+                                                                                        <input type="email" class="form-control form-control-user" name="correo"
                                                                                             placeholder="Ingrese su correo electronico" required >
                                                                                     </div>
                                                                                 </div>
@@ -156,11 +160,11 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-10">
-                                                                                        <select class="default-select wide form-control" required >
+                                                                                        <select class="default-select wide form-control" required name="gen" >
                                                                                             <option data-display="Selecciona el genero">Selecciona una opcion</option>
-                                                                                            <option value="html">M</option>
-                                                                                            <option value="css">F</option>
-                                                                                            <option value="css">I</option>
+                                                                                            <option value="M">M</option>
+                                                                                            <option value="F">F</option>
+                                                                                            <option value="I">I</option>
                                                                                             
                                                                                         </select>
                                                                                         

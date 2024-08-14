@@ -23,10 +23,36 @@ class User_model extends CI_Model {
     // Mostrar la lista de usuarios
     public function listUsuarios($user){
 		$this->db->select('idUsuario AS ID,ci AS CI,nombre AS Nombre,login AS Login,
-        apellidos AS Apellidos,fechaNac AS Fecha,telefono AS Telefono,tipo AS Tipo,estado AS Estado');
+        apellidos AS Apellidos,fechaNac AS Fecha,telefono AS Telefono,tipo AS Tipo,estado AS Estado,genero AS Genero,email AS Email,foto AS Foto');
         $this->db->from('usuarios');
         $this->db->where_not_in('idUsuario',$user->getID());
         $this->db->order_by('idUsuario');
 		return $this->db->get();
 	}
+    // Buscar por CI a los usuarios para verificacion al crear
+    public function getUsersCi($user){
+        $this->db->select('ci AS Persona,nombre AS Nombre,apellidos AS Apellidos');
+        $this->db->from('usuarios');
+        $this->db->where('ci',$user->getCI());
+        $this->db->where('nombre',$user->getNombre());
+        $this->db->where('apellidos',$user->getApellido());
+        return $this->db->get();
+    }
+    // Insertar datos de los usuarios
+    public function insertUser($user){
+        $this->db->set('ci',$user->getCI());
+        $this->db->set('nombre',$user->getNombre());
+        $this->db->set('apellidos',$user->getApellido());
+        $this->db->set('fechaNac',$user->getFechaNacimiento());
+        $this->db->set('telefono',$user->getTelefono());
+        $this->db->set('login',$user->getlogin());
+        $this->db->set('password', $user->getPassword());
+        $this->db->set('tipo', $user->getTipo());
+        //$this->db->set('usuario', $user->getUsuario());
+        //$this->db->set('foto', $user->getFoto());
+        $this->db->set('genero', $user->getGenero());
+        $this->db->set('email', $user->getEmail());
+        //$this->db->set('foto', $user->getFoto());
+		$this->db->insert('usuarios');
+    }
 }

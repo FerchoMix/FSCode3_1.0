@@ -14,6 +14,10 @@ class Usuario{
     private $fecAct;
     private $usuario;
     private $tipo;
+    private $foto;
+    private $genero;
+    private $email;
+
     public function __construct(){
     }
     //nombre completo
@@ -110,5 +114,23 @@ class Usuario{
     }
     public function setTelefono($telefono){
         $this->telefono = $telefono;
+    }
+    public function getFoto(){
+        return $this->foto;
+    }
+    public function setFoto($foto){
+        $this->foto = $foto;
+    }
+    public function getGenero(){
+        return $this->genero;
+    }
+    public function setGenero($genero){
+        $this->genero = $genero;
+    }
+    public function getEmail(){
+        return $this->email;
+    }
+    public function setEmail($email){
+        $this->email = $email;
     }
 }
