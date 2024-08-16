@@ -31,11 +31,12 @@ class User_model extends CI_Model {
 	}
     // Buscar por CI a los usuarios para verificacion al crear
     public function getUsersCi($user){
-        $this->db->select('ci AS Persona,nombre AS Nombre,apellidos AS Apellidos');
+        //$this->db->select('ci AS Persona,nombre AS Nombre,apellidos AS Apellidos');
+        $this->db->select('ci AS Persona');
         $this->db->from('usuarios');
         $this->db->where('ci',$user->getCI());
-        $this->db->where('nombre',$user->getNombre());
-        $this->db->where('apellidos',$user->getApellido());
+        //$this->db->where('nombre',$user->getNombre());
+        //$this->db->where('apellidos',$user->getApellido());
         return $this->db->get();
     }
     // Insertar datos de los usuarios
