@@ -213,22 +213,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- End Modal Crear Usuario -->
                                     <!-- Modal  Modificar Usuario-->
                                      <!-- Large modal -->
-       
+                                <?php foreach ($usuarios->result() as $row){ ?>
                                 <div class="modal fade" id="modificarUsuario<?php echo $row->ID; ?>" tabindex="-1" role="dialog" aria-hidden="true" role="dialog">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Crear Nuevo Uusario</h5>
+                                                    <h5 class="modal-title">Modificar Datos</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
                                                     <div class="col-lg-12">
                                                         <div class="p-4">
-                                                        <?php echo form_open_multipart('user/createuser'); ?>
-                                                        
+                                                        <?php echo form_open_multipart('user/updateuser'); ?>
+                                                        <div>    
+                                                            <input type="hidden" name="ID" value="<?php echo $row->ID; ?>">
+                                                        </div>
                                                                         <div class="row">
                                                                             <div class="col-xl-6">
                                                                                 <div class="mb-3 row">
@@ -238,7 +241,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text" class="form-control form-control-user" name="nombres"
                                                                                             placeholder="Ingrese los nombres" required pattern="[ñ,Ñ,A-Z,a-z,\ ]{0,50}"
-                                                                                            title="Solo letras" >
+                                                                                            title="Solo letras"  value="<?php echo $row->Nombre ?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -248,7 +251,7 @@
                                                                                     <div class="col-lg-12">
                                                                                     <input type="text" class="form-control form-control-user" name="apellidos"
                                                                                         placeholder="Ingrese los apellidos" pattern="[ñ,Ñ,A-Z,a-z,\ ]{0,30}"
-                                                                                        title="Solo letras">
+                                                                                        title="Solo letras" value="<?php echo $row->Apellidos ?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -259,7 +262,7 @@
                                                                                         
                                                                                         <input type="text" class="form-control form-control-user" name="carnet"
                                                                                             placeholder="Ingrese el CI" required maxlength="10" pattern="[0-9,Ñ,A-Z,\-]{0,10}"
-                                                                                            title="Sin letras" >
+                                                                                            title="Sin letras" value="<?php echo $row->CI ?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -267,7 +270,7 @@
                                                                                     </label>
                                                                                     <div class="col-lg-10">
                                                                                     
-                                                                                    <input type="date" class="form-control form-control-user" name="fechaNacimiento" required>
+                                                                                    <input type="date" class="form-control form-control-user" name="fechaNacimiento" required value="<?php echo $row->Fecha ?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -276,7 +279,7 @@
                                                                                     </label>
                                                                                     <div class="col-lg-12">
                                                                                         <input type="email" class="form-control form-control-user" name="correo"
-                                                                                            placeholder="Ingrese su correo electronico" required >
+                                                                                            placeholder="Ingrese su correo electronico" required value="<?php echo $row->Email ?>">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -286,11 +289,28 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-10">
-                                                                                        <select class="default-select wide form-control" required name="gen" >
+                                                                                    <?php switch($row->Genero){ 
+                                                                                        case 'M':    
+                                                                                            $Mas = 'selected';
+                                                                                            $Fem = '';
+                                                                                            $Ind = '';
+                                                                                            break;
+                                                                                        case 'F':
+                                                                                            $Mas = '';
+                                                                                            $Fem = 'selected';
+                                                                                            $Ind = '';
+                                                                                            break;
+                                                                                        default:
+                                                                                            $Mas = '';
+                                                                                            $Fem = '';
+                                                                                            $Ind = 'selected';
+                                                                                        }
+                                                                                    ?>
+                                                                                        <select class="default-select wide form-control" required name="gen">
                                                                                             <option data-display="Selecciona el genero">Selecciona una opcion</option>
-                                                                                            <option value="M">M</option>
-                                                                                            <option value="F">F</option>
-                                                                                            <option value="I">I</option>
+                                                                                            <option value="M" <?php echo $Mas ?>>Masculino</option>
+                                                                                            <option value="F" <?php echo $Fem ?>>Femenino</option>
+                                                                                            <option value="I" <?php echo $Ind ?>>Indefinido, prefiero no decirlo</option>
                                                                                             
                                                                                         </select>
                                                                                         
@@ -303,7 +323,7 @@
                                                                                     <div class="col-lg-10">
                                                                                         <input type="text" class="form-control form-control-user" name="contacto"
                                                                                         placeholder="Ingrese el número de contacto" maxlength="8" pattern="[0-9]{0,8}"
-                                                                                        title="Solo números" >
+                                                                                        title="Solo números" value="<?php echo $row->Telefono ?>" >
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -311,11 +331,26 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-10">
+                                                                                    <?php switch($row->Tipo){ 
+                                                                                        case '1':    
+                                                                                            $Adm = 'selected';
+                                                                                            $Ven = '';
+                                                                                            break;
+                                                                                        case '0':
+                                                                                            $Adm = '';
+                                                                                            $Ven = 'selected';
+                                                                                            break;
+                                                                                        default:
+                                                                                            $Adm = '';
+                                                                                            $Ven = '';
+                                                                                            $Alm = 'selected';
+                                                                                        }
+                                                                                    ?>
                                                                                         <select class="default-select wide form-control" required name="tipo" >
                                                                                             <option data-display="Selecciona el tipo de usuario">Selecciona una opcion</option>
-                                                                                            <option value="1">Administrador</option>
-                                                                                            <option value="0">Vendedor</option>
-                                                                                            <option value="2">Almacen</option>
+                                                                                            <option value="1" <?php echo $Adm ?> >Administrador</option>
+                                                                                            <option value="0" <?php echo $Ven ?> >Vendedor</option>
+                                                                                            <option value="2" <?php echo $Alm ?> >Almacen</option>
                                                                                             
                                                                                         </select>
                                                                                         
@@ -326,7 +361,7 @@
                                                         
                                                             <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-primary btn-user">Registrar</button>
+                                                        <button type="submit" class="btn btn-primary btn-user">Modificar</button>
                                                             </div>
                                                         <?php echo form_close(); ?>
                                                         </div> 
@@ -336,3 +371,5 @@
                                             </div>
                                         </div>
                                     </div>
+                                <?php } ?>
+                                <!-- End Modal Modificar Usuario -->
