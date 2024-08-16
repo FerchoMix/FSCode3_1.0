@@ -51,6 +51,7 @@ class User extends CI_Controller{
             
             if($users->num_rows()>0){
                 $this->session->set_flashdata('existe',TRUE);
+                
             }else{
                 $this->user_model->insertUser($nuevo);
                 $this->session->set_flashdata('nuevo',$nuevo->getLogin());
