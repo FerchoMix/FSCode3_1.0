@@ -25,6 +25,17 @@ class User_model extends CI_Model {
 		$this->db->select('idUsuario AS ID,ci AS CI,nombre AS Nombre,login AS Login,
         apellidos AS Apellidos,fechaNac AS Fecha,telefono AS Telefono,tipo AS Tipo,estado AS Estado,genero AS Genero,email AS Email,foto AS Foto');
         $this->db->from('usuarios');
+        $this->db->where_in('estado', array(1, 2, 4));
+        $this->db->where_not_in('idUsuario',$user->getID());
+        $this->db->order_by('idUsuario');
+		return $this->db->get();
+	}
+    // Mostrar la lista de usuarios
+    public function listUsuariosD($user){
+		$this->db->select('idUsuario AS ID,ci AS CI,nombre AS Nombre,login AS Login,
+        apellidos AS Apellidos,fechaNac AS Fecha,telefono AS Telefono,tipo AS Tipo,estado AS Estado,genero AS Genero,email AS Email,foto AS Foto');
+        $this->db->from('usuarios');
+        $this->db->where_in('estado',3);
         $this->db->where_not_in('idUsuario',$user->getID());
         $this->db->order_by('idUsuario');
 		return $this->db->get();
@@ -55,5 +66,11 @@ class User_model extends CI_Model {
         $this->db->set('email', $user->getEmail());
         //$this->db->set('foto', $user->getFoto());
 		$this->db->insert('usuarios');
+    }
+    //cambiar estado de usuario f
+    public function deleteUser($user){
+        $this->db->set('estado',$user->getEstado());
+        $this->db->where('idUsuario',$user->getID());
+		$this->db->update('usuarios');
     }
 }

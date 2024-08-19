@@ -67,13 +67,16 @@
                         <td><?php echo $tipo; ?></td>
                         <td><?php echo $row->Genero; ?></td>
                         <td><?php echo $row->Email; ?></td>
-                        <td>                        <?php if(!($row->Estado==3)){ ?>
+                        <td>                        
+                            
 													<div class="d-flex">
 														<button type="submit" class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarUsuario<?php echo $row->ID; ?>"><i class="fas fa-pencil-alt"></i></button>
-														<button href="#" class="btn btn-danger shadow btn-xs sharp" data-toggle="modal" 
-                                                        data-target="#eliminarUsuario<?php echo $row->ID; ?>" ><i class="fa fa-trash"></i></button>
+                                                       
+														<button type="submit" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>"><i class="fas fa-trash-alt"></i></button>
+                                                        
+                                                        
 													</div>
-                                                    <?php } ?>
+                            
 												</td>
                         </tr>
                     <?php } ?>
@@ -373,3 +376,30 @@
                                     </div>
                                 <?php } ?>
                                 <!-- End Modal Modificar Usuario -->
+                                 <!-- Button trigger modal 
+                                 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>">Modal centered</button> -->
+                                    <!-- Modal Eliminar--> 
+                                    <?php foreach ($usuarios->result() as $row){ ?>
+                                    <div class="modal fade" id="eliminarUsuario<?php echo $row->ID; ?>" >
+                                        <div class="modal-dialog modal-dialog-centered" role="dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                    </button>
+                                                </div>
+                                                <?php echo form_open_multipart('user/deleteuser'); ?>
+                                                        <div>    
+                                                            <input type="hidden" name="ID" value="<?php echo $row->ID; ?>">
+                                                        </div>
+                                                <div class="modal-body">
+                                                    <h3>¿Estas seguro de eliminar al usuario?</h3>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">No</button>
+                                                    <button type="submit" class="btn btn-primary">Si</button>
+                                                </div>
+                                                <?php echo form_close(); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>

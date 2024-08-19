@@ -62,6 +62,20 @@ class User extends CI_Controller{
         } finally {
             redirect('user','refresh');
         }
-      } 
+    } 
+    //Eliminar usuario
+	public function deleteuser(){
+		try{
+			$user = new Usuario();
+			$user->setID($_POST['ID']);
+			$user->setEstado(3);
+			$this->user_model->deleteUser($user);
+			redirect('user/index','refresh');
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('user','refresh');
+		}
+	}
     
 }
