@@ -21,6 +21,9 @@
                                 <button  class="btn btn-rounded btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#crearNuevoUsuario">
                                     Agregar Nuevo Usuario
                                 </button>
+                                
+                                <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/user/index2">Usuarios dado de baja</a>
+                                
                             </div>
                             <hr>
                                 <div class="table-responsive">
@@ -72,7 +75,7 @@
 													<div class="d-flex">
 														<button type="submit" class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarUsuario<?php echo $row->ID; ?>"><i class="fas fa-pencil-alt"></i></button>
                                                        
-														<button type="submit" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>"><i class="fas fa-trash-alt"></i></button>
+														<button type="submit" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarUsuario<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
                                                         
                                                         
 													</div>
@@ -338,15 +341,18 @@
                                                                                         case '1':    
                                                                                             $Adm = 'selected';
                                                                                             $Ven = '';
+                                                                                            $Alm='';
                                                                                             break;
                                                                                         case '0':
                                                                                             $Adm = '';
                                                                                             $Ven = 'selected';
+                                                                                            $Alm='';
                                                                                             break;
-                                                                                        default:
+                                                                                        default :
                                                                                             $Adm = '';
                                                                                             $Ven = '';
                                                                                             $Alm = 'selected';
+                                                                                        
                                                                                         }
                                                                                     ?>
                                                                                         <select class="default-select wide form-control" required name="tipo" >
@@ -378,21 +384,21 @@
                                 <!-- End Modal Modificar Usuario -->
                                  <!-- Button trigger modal 
                                  <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>">Modal centered</button> -->
-                                    <!-- Modal Eliminar--> 
+                                    <!-- Modal Deshabilitar--> 
                                     <?php foreach ($usuarios->result() as $row){ ?>
-                                    <div class="modal fade" id="eliminarUsuario<?php echo $row->ID; ?>" >
+                                    <div class="modal fade" id="deshabilitarUsuario<?php echo $row->ID; ?>" >
                                         <div class="modal-dialog modal-dialog-centered" role="dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                     </button>
                                                 </div>
-                                                <?php echo form_open_multipart('user/deleteuser'); ?>
+                                                <?php echo form_open_multipart('user/unableuser'); ?>
                                                         <div>    
                                                             <input type="hidden" name="ID" value="<?php echo $row->ID; ?>">
                                                         </div>
                                                 <div class="modal-body">
-                                                    <h3>¿Estas seguro de eliminar al usuario?</h3>
+                                                    <h3>¿Estas seguro de dar de baja al usuario?</h3>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">No</button>
@@ -403,3 +409,4 @@
                                         </div>
                                     </div>
                                     <?php } ?>
+                                <!--End Modal Deshabilitar--> 

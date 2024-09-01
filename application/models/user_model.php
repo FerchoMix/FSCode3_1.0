@@ -67,6 +67,21 @@ class User_model extends CI_Model {
         //$this->db->set('foto', $user->getFoto());
 		$this->db->insert('usuarios');
     }
+    //modificar usuarios 
+    public function updateUser($user){
+        $this->db->set('ci', $user->getCI());
+        $this->db->set('nombre', $user->getNombre());
+        $this->db->set('apellidos', $user->getApellido());
+        $this->db->set('fechaNac', $user->getFechaNacimiento());
+        $this->db->set('telefono', $user->getTelefono());
+        $this->db->set('tipo', $user->getTipo());
+        $this->db->set('estado', $user->getEstado());
+        //$this->db->set('usuario', $user->getUsuario());
+        $this->db->set('genero', $user->getGenero());
+        $this->db->set('email', $user->getEmail());
+		$this->db->where('idUsuario',$user->getID());
+		$this->db->update('usuarios');
+	}
     //cambiar estado de usuario f
     public function deleteUser($user){
         $this->db->set('estado',$user->getEstado());
