@@ -21,7 +21,7 @@
 							<span class="nav-text">Productos</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/user/">Ver Productos</a></li>
+                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/product/index">Ver Productos</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -31,7 +31,7 @@
 							<span class="nav-text">Ventas</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/user/">Ver Ventas</a></li>
+                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/sale/salelist">Ver Ventas</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -39,7 +39,7 @@
 							<span class="nav-text">Clientes</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/user/">Ver Clientes</a></li>
+                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/client">Ver Clientes</a></li>
                         </ul>
                     </li>
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -47,7 +47,7 @@
 							<span class="nav-text">Inventarios</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/user/">Ver Entradas</a></li>
+                            <li><a class="collapse-item" href="<?PHP echo base_url(); ?>index.php/buy/buylist">Ver Entradas</a></li>
                         </ul>
                     </li>
                     
