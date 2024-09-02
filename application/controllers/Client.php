@@ -24,14 +24,36 @@ class Client extends CI_Controller {
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
         $this->load->view('general/topbar.php',$top);
-		if($this->session->userdata('tipo')=='Administrador'){
+		if($this->session->userdata('tipo')=='1'){
 			$this->load->view('sidebars/admin.php');
 		}else{
 			$this->load->view('sidebars/vendedor.php');
 		}
-		
 		$this->load->view('clients/lista_clientes.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
+        
     }
+    public function createclient(){
+        try{
+            $nuevo = new Cliente();
+            $nuevo->setNombre($_POST['razonSocial']);
+            $nuevo->setCI($_POST['ciNit']);
+            $nuevo->setDireccion($_POST['direccion']);
+            $nuevo->setTelefono($_POST['contacto']);
+            $nuevo->setUsuario($this->session->userdata('idusuario'));
+            $clientes=$this->client_model->getClientCI($nuevo);
+            if($clientes->num_rows()>0){
+                $this->session->set_flashdata('existe',TRUE);
+            }
+            else{
+                $this->client_model->insertClient($nuevo);
+                $this->session->set_flashdata('nuevo',$nuevo->getNombre());
+            }
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        } finally {
+            redirect('client','refresh');
+        }
+        }
 }

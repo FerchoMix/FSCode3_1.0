@@ -17,4 +17,13 @@ class Client_model extends CI_Model {
         $this->db->order_by('ID');
 		return $this->db->get();
 	}
+    public function insertClient($client){
+        $this->db->set('cinit', $client->getCI());
+        $this->db->set('nombre', $client->getNombre());
+        $this->db->set('direccion', $client->getDireccion());
+        $this->db->set('telefono', $client->getTelefono());
+        //$this->db->set('usuario', $client->getUsuario());
+		$this->db->insert('clientes');
+	}
+    //
 }

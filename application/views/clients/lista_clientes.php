@@ -21,7 +21,7 @@
                                 <button  class="btn btn-rounded btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#crearNuevoCliente">
                                     Agregar Nuevo Cliente
                                 </button>
-                                <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/user/index">Clientes dehabilitados</a>
+                                <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/client/index2">Clientes dehabilitados</a>
                                 
                             </div>
                             <hr>
@@ -96,7 +96,7 @@
                                                     <div class="modal-body">
                                                     <div class="col-lg-12">
                                                         <div class="p-4">
-                                                        <?php echo form_open_multipart('user/createuser'); ?>
+                                                        <?php echo form_open_multipart('client/createclient'); ?>
                                                         
                                                                         <div class="row">
                                                                             <div class="col-xl-6">
@@ -142,8 +142,8 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-12">
-                                                                                        <input type="text" class="form-control form-control-user" name="razonSocial"
-                                                                                            placeholder="Razon Social" required pattern="[0-9,ñ,Ñ,A-Z,a-z,\ ]{0,50}"
+                                                                                        <input type="text" class="form-control form-control-user" name="direccion"
+                                                                                            placeholder="Direccion" required pattern="[0-9,ñ,Ñ,A-Z,a-z,\ ]{0,50}"
                                                                                             title="" >
                                                                                     </div>
                                                                                 </div>
