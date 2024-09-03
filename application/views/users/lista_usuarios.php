@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                
+                            <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4> 
                             </div>
                             <div class="card-body">
                             <div>

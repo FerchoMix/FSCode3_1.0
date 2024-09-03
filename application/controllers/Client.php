@@ -24,7 +24,7 @@ class Client extends CI_Controller {
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
         $this->load->view('general/topbar.php',$top);
-		if($this->session->userdata('tipo')=='1'){
+		if($this->session->userdata('tipo')=='Administrador' ){
 			$this->load->view('sidebars/admin.php');
 		}else{
 			$this->load->view('sidebars/vendedor.php');
