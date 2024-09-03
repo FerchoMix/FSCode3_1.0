@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Menu extends CI_Controller {
 	public function index(){
 		switch($this->session->userdata('tipo')){
-			case 'Administrador':
+			case 1:
 				redirect('menu/adm','refresh');
 				break;
-			case 'Vendedor':
+			case 0:
 				redirect('menu/ven','refresh');
 				break;
 			default:
