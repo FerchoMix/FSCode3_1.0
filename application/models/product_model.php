@@ -55,4 +55,21 @@ class Product_model extends CI_Model {
 return $this->db->get();
 
 	}
+    public function updateWhare($pro,$tipo){
+        $this->db->select('almacen AS Almacen');
+        $this->db->from('productos');
+        $this->db->where('idProducto',$pro->getProducto());
+        $productos = $this->db->get();
+        foreach ($productos->result() as $row){
+            $alm = $row->Almacen;
+        }
+        if($tipo == 0){
+            $alm = $alm + $pro->getProductos();
+        }else{
+            $alm = $alm - $pro->getProductos();
+        }
+        $this->db->set('almacen', $alm);
+		$this->db->where('idProducto',$pro->getProducto());
+		$this->db->update('productos');
+    }
 }

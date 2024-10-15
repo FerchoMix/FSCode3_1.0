@@ -28,10 +28,9 @@ class Client_model extends CI_Model {
     //buscar cliente por ID
     public function searchClient($client){
         $this->db->select('idCliente AS ID,cinit AS CI,nombre AS Nombre,direccion AS Direccion,
-            contacto AS Contacto,estado AS Estado');
+            telefono AS Contacto,estado AS Estado');
         $this->db->from('clientes');
         $this->db->where('idCliente',$client->getID());
         return $this->db->get();
     }
-}
 }

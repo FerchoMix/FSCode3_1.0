@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                            <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>
+                            <!--<h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>-->
                             </div>
                             <div class="card-body">
                             <div>
@@ -25,33 +25,27 @@
                             <hr>
                                 <div class="table-responsive">
                                     <table id="example3" class="display" style="min-width: 845px">
-                                        <thead>
+                                    <thead>
                                             <tr>
-                                                
-                                                <th></th>
-                                                <th>Nro Carnet</th>
-                                                <th>Nombre de Usuario</th>
+                                                <th>Perfil</th>
                                                 <th>Nombres</th>
                                                 <th>Apellidos</th>
                                                 <th>Teléfono</th>
-                                                <th>Estado</th>
-                                                <th>Acceso</th>
+                                                <th>Rol</th>
                                                 <th>Genero</th>
                                                 <th>Email</th>
-                                                 <th></th> 
+                                                 <th>Acciones</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($usuarios->result() as $row)
+                                        <?php foreach($usuarios->result() as $row)
                                             {
                                             ?>
                                             <tr>
-                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>/Template/<?php echo $row->Foto; ?>" alt=""></td>
-                        <td><?php echo $row->CI; ?></td>
-                        <td><?php echo $row->Login; ?></td>
-                        <td><?php echo $row->Nombre; ?></td>
-                        <td><?php echo $row->Apellidos; ?></td>
-                        <td><?php echo $row->Telefono; ?></td>
+                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>upload/usuaios/<?php echo $row->Foto; ?>" alt=""></td>
+                                            <td><?php echo $row->Nombre; ?></td>
+                                            <td><?php echo $row->Apellidos; ?></td>
+                                            <td><?php echo $row->Telefono; ?></td>
                         <?php switch($row->Tipo){ 
                                     case 1:    
                                        $tipo='Administrador';
@@ -63,10 +57,9 @@
                                     $tipo='';
                                     }
                                 ?>
-                        <td><?php echo formatoEstado($row->Estado); ?></td>
-                        <td><?php echo $tipo; ?></td>
-                        <td><?php echo $row->Genero; ?></td>
-                        <td><?php echo $row->Email; ?></td>
+                                            <td><?php echo $tipo; ?></td>
+                                            <td><?php echo $row->Genero; ?></td>
+                                            <td><?php echo $row->Email; ?></td>
                         <td>                        
                             
 													<div class="d-flex">

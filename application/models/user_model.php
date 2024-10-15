@@ -5,17 +5,18 @@ class User_model extends CI_Model {
     //buscar por login y password de usuario para verificacion f
     public function searchUserLp($user){
         $this->db->select('idUsuario AS ID,login AS Login,password AS Password,
-            tipo AS Tipo,estado AS Estado');
+            tipo AS Tipo,estado AS Estado,foto AS Foto');
         $this->db->from('usuarios');
         $this->db->where('Login',$user->getLogin());
         $this->db->where('Password',$user->getPassword());
+        //$this->db->where('Foto',$user->getFoto());
         return $this->db->get();
     }
     //buscar perfil f
     // Buscar perfil
     public function getPerfil($user){
         $this->db->select('ci AS CI,nombre AS Nombre,login AS Login,apellidos AS Apellido,
-        fechaNac AS Fecha,tipo AS Tipo,telefono AS Telefono');
+        fechaNac AS Fecha,tipo AS Tipo,telefono AS Telefono','foto AS Foto');
         $this->db->from('usuarios');
         $this->db->where('idUsuario',$user->getID());
 		return $this->db->get();
@@ -86,6 +87,34 @@ class User_model extends CI_Model {
     public function deleteUser($user){
         $this->db->set('estado',$user->getEstado());
         $this->db->where('idUsuario',$user->getID());
+		$this->db->update('usuarios');
+    }
+    //buscar usuario por ID
+    public function searchUser($user){
+        $this->db->select('idUsuario AS ID,ci AS CI,nombre AS Nombre,apellidos AS Apellido');
+        $this->db->from('usuarios');
+        $this->db->where('idUsuario',$user->getID());
+        return $this->db->get();
+
+    }
+    //modificar foto usuario
+    public function updatePhoto($user){
+        $this->db->set('foto', $user->getFoto());
+        //$this->db->set('usuarios', $user->getUsuario());
+        $this->db->where('idUsuario',$user->getID());
+        $this->db->update('usuarios');
+    }
+    //buscar contraseña del usuario
+    public function searchPassword($user){
+        $this->db->select('password AS Contra');
+        $this->db->from('usuarios');
+        $this->db->where('idUsuario',$user->getID());
+        $this->db->where('password',md5($user->getPassword()));
+        return $this->db->get();
+    }
+    public function changePassword($user,$nueva){
+        $this->db->set('password', $nueva);
+		$this->db->where('idUsuario',$user->getID());
 		$this->db->update('usuarios');
     }
 }

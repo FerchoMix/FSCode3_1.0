@@ -15,16 +15,43 @@
                         <div class="card">
                             <div class="card-header">
                             <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>
-                            <?php $this->session->userdata('tipo')?>
+                         
                         </div>
-                            <div class="card-body">
-                            <div>
-                                <button  class="btn btn-rounded btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#crearNuevoCliente">
-                                    Agregar Nuevo Cliente
-                                </button>
-                                <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/client/index2">Clientes dehabilitados</a>
-                               <?php echo $this->session->userdata('tipo')?>
-                            </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-2">
+                                    <?php echo form_open_multipart('sale/resetfilesale'); ?>
+                                    <b>Desde:</b>
+                                    <input class="form-control form-control-user" type="date" name="ini1" id="ini1" max="<?php echo date('Y-m-d'); ?>"
+                                        value="<?php echo $fecIni; ?>" required>
+                                </div>
+                                <div class="col-sm-2">
+                                    <b>Hasta:</b>
+                                    <input class="form-control form-control-user" type="date" name="fin1" id="fin1" max="<?php echo date('Y-m-d'); ?>"
+                                        value="<?php echo $fecFin; ?>" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-primary" >
+                                        Actualizar
+                                    <i class="fas fa-reply"></i>
+                                    </button>
+                                    <?php echo form_close(); ?>
+                                </div>
+                                <div class="col-sm-3">
+                                    <?php echo form_open_multipart('sale/printfilesale',['target' => '_blank']); ?>
+                                    <input class="form-control form-control-user" type="date" name="ini2" id="ini2" max="<?php echo date('Y-m-d'); ?>"
+                                        value="<?php echo $fecIni; ?>" required hidden>
+                                    <input class="form-control form-control-user" type="date" name="fin2" id="fin2" max="<?php echo date('Y-m-d'); ?>"
+                                        value="<?php echo $fecFin; ?>" required hidden>
+                                    <button type="sumbit" class="btn btn-success">
+                                        Imprimir Informe
+                                    <i class="fas fa-print"></i>
+                                    </button>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            <div class="col-sm-1"></div>
+                        
                             <hr>
                                 <div class="table-responsive">
                                     <table id="example3" class="display" style="min-width: 845px">

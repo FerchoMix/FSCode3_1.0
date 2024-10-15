@@ -10,7 +10,8 @@
             <h4 class="m-0 font-weight-bold text-dark"><?PHP ECHO $respuesta; ?></h4>
         </div>
         <div class="card-body">
-            
+            s
         </div>
     </div>
+    
 </div>

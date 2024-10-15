@@ -15,7 +15,7 @@
                         <div class="card">
                             <div class="card-header">
                             <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>
-                            <?php $this->session->userdata('tipo')?>
+                            
                         </div>
                             <div class="card-body">
                             <div>
@@ -23,7 +23,7 @@
                                     Agregar Nuevo Cliente
                                 </button>
                                 <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/client/index2">Clientes dehabilitados</a>
-                               <?php echo $this->session->userdata('tipo')?>
+                               
                             </div>
                             <hr>
                                 <div class="table-responsive">

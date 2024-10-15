@@ -30,18 +30,14 @@
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                
-                                                <th></th>
-                                                <th>Nro Carnet</th>
-                                                <th>Nombre de Usuario</th>
+                                                <th>Perfil</th>
                                                 <th>Nombres</th>
                                                 <th>Apellidos</th>
                                                 <th>Teléfono</th>
-                                                <th>Estado</th>
-                                                <th>Acceso</th>
+                                                <th>Rol</th>
                                                 <th>Genero</th>
                                                 <th>Email</th>
-                                                 <th></th> 
+                                                 <th>Acciones</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -49,12 +45,10 @@
                                             {
                                             ?>
                                             <tr>
-                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>/Template/<?php echo $row->Foto; ?>" alt=""></td>
-                        <td><?php echo $row->CI; ?></td>
-                        <td><?php echo $row->Login; ?></td>
-                        <td><?php echo $row->Nombre; ?></td>
-                        <td><?php echo $row->Apellidos; ?></td>
-                        <td><?php echo $row->Telefono; ?></td>
+                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>upload/usuarios/<?php echo $row->Foto; ?>" alt=""></td>
+                                            <td><?php echo $row->Nombre; ?></td>
+                                            <td><?php echo $row->Apellidos; ?></td>
+                                            <td><?php echo $row->Telefono; ?></td>
                         <?php switch($row->Tipo){ 
                                     case 1:    
                                        $tipo='Administrador';
@@ -66,16 +60,15 @@
                                     $tipo='';
                                     }
                                 ?>
-                        <td><?php echo formatoEstado($row->Estado); ?></td>
-                        <td><?php echo $tipo; ?></td>
-                        <td><?php echo $row->Genero; ?></td>
-                        <td><?php echo $row->Email; ?></td>
+                                            <td><?php echo $tipo; ?></td>
+                                            <td><?php echo $row->Genero; ?></td>
+                                            <td><?php echo $row->Email; ?></td>
                         <td>                        
                             
 													<div class="d-flex">
-														<button type="submit" class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarUsuario<?php echo $row->ID; ?>"><i class="fas fa-pencil-alt"></i></button>
+														<button type="submit" class="btn btn-primary shadow btn-sm sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarUsuario<?php echo $row->ID; ?>"><i class="fas fa-pencil-alt"></i></button>
                                                        
-														<button type="submit" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarUsuario<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
+														<button type="submit" class="btn btn-danger shadow btn-sm sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarUsuario<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
                                                         
                                                         
 													</div>
@@ -170,10 +163,10 @@
                                                                                     </label>
                                                                                     <div class="col-lg-10">
                                                                                         <select class="default-select wide form-control" required name="gen" >
-                                                                                            <option data-display="Selecciona el genero">Selecciona una opcion</option>
-                                                                                            <option value="M">M</option>
-                                                                                            <option value="F">F</option>
-                                                                                            <option value="I">I</option>
+                                                                                            
+                                                                                            <option value="M" selected>Masculino</option>
+                                                                                            <option value="F">Femenino</option>
+                                                                                            <option value="I">Indefinido, prefiero no decirlo</option>
                                                                                             
                                                                                         </select>
                                                                                         
@@ -195,9 +188,8 @@
                                                                                     </label>
                                                                                     <div class="col-lg-10">
                                                                                         <select class="default-select wide form-control" required name="tipo" >
-                                                                                            <option data-display="Selecciona el tipo de usuario">Selecciona una opcion</option>
                                                                                             <option value="1">Administrador</option>
-                                                                                            <option value="0">Vendedor</option>
+                                                                                            <option value="0" selected>Vendedor</option>
                                                                                             <option value="2">Almacen</option>
                                                                                             
                                                                                         </select>

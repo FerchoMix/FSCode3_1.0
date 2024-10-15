@@ -145,5 +145,57 @@ class User extends CI_Controller{
 			redirect('user','refresh');
 		}
 	}
-    
+    //Cambiar foto
+	public function updatephoto(){
+		try{
+			$nuevo = new Usuario();
+			$nuevo->setID($this->session->userdata('idusuario'));
+			$nuevo->setUsuario($this->session->userdata('idusuario'));
+			$nuevo->setFoto($nuevo->getID().'.jpg');
+			$config['upload_path']='./upload/usuarios';
+			$config['file_name']=$nuevo->getFoto();
+			$config['allowed_types']='jpg|jpeg|png';
+			$config['overwrite'] = TRUE;
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			if(!$this->upload->do_upload('userfile')){
+				$data['error']=$this->upload->display_errors();
+			}else{
+				$this->user_model->updatePhoto($nuevo);
+				$this->session->set_userdata('foto',$nuevo->getFoto());
+				$this->upload->data();
+			}
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('menu','refresh');
+		}
+		}
+		//cambiar contraseña
+		public function updatepass(){
+		try{
+			$user = new Usuario();
+			$user->setPassword($_POST['actual']);
+			$user->setID($this->session->userdata('idusuario'));
+			$rec = $this->user_model->searchPassword($user);
+			$nueva = $_POST['nueva'];
+			$repetido = $_POST['repetido'];
+			if($nueva == $repetido){
+				if($rec->num_rows()>0){
+					$this->session->set_userdata('respuesta',"Su contraseña fue cambiada exitosamente");
+					$this->user_model->changePassword($user,md5($nueva));
+				}else{
+					$this->session->set_userdata('respuesta',"Contraseña actual incorrecta, comuniquese con el administrador");
+				}
+			}else{
+				$this->session->set_userdata('respuesta',"Los campos nuevos no coinciden");
+			}
+			redirect('menu','refresh');
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('menu','refresh');
+		}
+		}
+	
 }

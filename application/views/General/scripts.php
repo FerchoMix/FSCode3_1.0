@@ -1,13 +1,4 @@
-<!--**********************************
-          Support ticket button start
-        ***********************************-->
-		
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
 
-
-        </div>
     <!--**********************************
         Main wrapper end
     ***********************************-->
@@ -27,18 +18,10 @@
 	
 	<!-- Chart piety plugin files -->
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/peity/jquery.peity.min.js"></script>
-	<!-- Dashboard 1
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dashboard/dashboard-1.js"></script>
 	
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/owl-carousel/owl.carousel.js"></script>
-	
-    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/custom.min.js"></script>
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dlabnav-init.js"></script>
-	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/demo.js"></script>
-    <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/styleSwitcher.js"></script>
- -->
+
     <!-- Datatable -->
-  <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/plugins-init/datatables.init.js"></script>
 
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
@@ -47,6 +30,7 @@
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/dlabnav-init.js"></script>
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/js/demo.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/js/styleSwitcher.js"></script>
+	
 		<script>
     function cardsCenter()
 		{
@@ -58,8 +42,8 @@
 			jQuery('.card-slider').owlCarousel({
 				loop:true,
 				margin:0,
-				nav:true,
-				//center:true,
+				//nav:true,
+				center:true,
 				slideSpeed: 3000,
 				paginationSpeed: 3000,
 				dots: true,
@@ -94,6 +78,10 @@
 		});
 		
 	</script>
+	<!-- New -->
+    <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/test13.js"></script>
+    <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/test25.js"></script>
+    <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/btab5.js"></script>
   
 
 </body>

@@ -1,43 +1,37 @@
-<!--**********************************
-            Content body start
-        ***********************************-->
+<!--Content body start-->
         <div class="content-body">
             <div class="container-fluid">
-				
-				<!-- <div class="row page-titles">
+				<div class="row page-titles">
 					<ol class="breadcrumb">
 						
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Datatable</a></li>
 					</ol>
-                </div>-->
+                </div>
                 <!-- row -->
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                            <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>
-                            </div>
+                                <div class="card-header">
+                                    <h4 class="m-0 font-weight-bold text-dark"><?php echo($mensaje)?></h4>
+                                </div>
                             <div class="card-body">
-                            <div>
-                                <button  class="btn btn-rounded btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#crearNuevoCliente">
-                                    Agregar Nuevo Cliente
-                                </button>
-                                <a class="btn btn-rounded btn-danger" type="button"  href="<?PHP echo base_url(); ?>index.php/client/index2">Clientes dehabilitados</a>
-                               <?php echo $this->session->userdata('tipo')?>
-                            </div>
-                            <hr>
+                                <div>
+                                    <button  class="btn btn-rounded btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#crearNuevoCliente">
+                                        Agregar Nuevo Cliente
+                                    </button>
+                                    
+                                </div>
+                                <hr>
                                 <div class="table-responsive">
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                
-                                                
                                                 <th>CiNit</th>
                                                 <th>Razón Social</th>
                                                 <th>Direccion</th>
                                                 <th>Contacto</th>
                                                 <th>Estado</th>
                                                 <th>Vender</th>
-                                                 <th></th> 
+                                                <th></th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,16 +54,13 @@
                                                 <?php echo form_close(); ?>
                                             </td>
                                             <td>                        
-                            
-													<div class="d-flex">
+                                                <div class="d-flex">
                                                     <button type="submit" class="btn btn-primary shadow btn-sm sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarCliente<?php echo $row->ID; ?>"><i class="fas fa-pencil-alt"></i></button>
                                                     <button type="submit" class="btn btn-danger shadow btn-sm sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarCliente<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
-													</div>
-                            
+                                                </div>
 											</td>
                                             </tr>
                                             <?php } ?>
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -79,9 +70,7 @@
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+       
         <!-- Modal Crear Usuario-->
        <!-- Large modal -->
        

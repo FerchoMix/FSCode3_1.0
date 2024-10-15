@@ -153,21 +153,24 @@
 							
 							
 							<li class="nav-item dropdown  header-profile">
+							
 								<a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-									<img src="images/user.jpg" width="56" alt="">
+									<img src="<?php echo base_url('upload/usuarios/'.$this->session->userdata('foto')); ?>"  width="56" alt="">
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="app-profile.html" class="dropdown-item ai-icon">
+									<a href="" data-bs-target="#modalPerfil" data-bs-toggle="modal" class="dropdown-item ai-icon"> 
 										<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 										<span class="ms-2">Profile </span>
 									</a>
 									<a href="email-inbox.html" class="dropdown-item ai-icon">
-										<svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-										<span class="ms-2">Inbox </span>
+										<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M19.43 12.98c.06-.32.07-.65.07-.98s-.01-.66-.07-.98l2.03-1.57c.19-.15.24-.42.13-.64l-2-3.46c-.11-.21-.34-.29-.56-.23l-2.36.93c-.55-.43-1.16-.79-1.83-1.05l-.36-2.59C15.07 2 14.67 2 14.35 2H9.65C9.33 2 9.03 2 8.91 2.43l-.36 2.59c-.67.26-1.28.62-1.83 1.05l-2.36-.93c-.22-.06-.45.02-.56.23l-2 3.46c-.11.22-.06.49.13.64l2.03 1.57c-.06.32-.07.65-.07.98s.01.66.07.98l-2.03 1.57c-.19.15-.24.42-.13.64l2 3.46c.11.21.34.29.56.23l2.36-.93c1 .78 2 .99 3 .99s2-.21 3-1l2.36 .93c .22 .06 .45 -.02 .56 -.23l2 -3 .46c .11 -.22 .06 -.49 -.13 -.64z"></path>
+										</svg>
+										<span class="ms-2">Configuracion </span>
 									</a>
-									<a href="page-error-404.html" class="dropdown-item ai-icon">
+									<a href="" data-bs-toggle="modal" data-bs-target="#logoutModal" class="dropdown-item ai-icon">
 										<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-										<span class="ms-2">Logout </span>
+										<span class="ms-2">Cerrar Sesion</span>
 									</a>
 								</div>
 							</li>
@@ -179,5 +182,140 @@
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
-        
-		
+      <!-- Large modal perfil -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modalPerfil">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Perfil del Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center mb-4">
+                    <div class="col-lg-12">
+                        <img class="img-profile rounded-circle" width="150" height="150"
+                             src="<?php echo base_url('upload/usuarios/'.$this->session->userdata('foto')); ?>" alt="Foto de Perfil">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <?php foreach($perfil->result() as $row) { ?>
+                            <div class="mb-3">
+                                <b>Nombre de Usuario:</b>
+                                <h6><?php echo $row->Login; ?></h6>
+                            </div>
+                            <div class="mb-3">
+                                <b>Nombre Completo:</b>
+                                <h6><?php echo ($row->Nombre) . ' ' . ($row->Apellido); ?></h6>
+                            </div>
+                            <div class="mb-3">
+                                <b>Carnet de Identidad:</b>
+                                <h6><?php echo $row->CI; ?></h6>
+                            </div>
+                            <div class="mb-3">
+                                <b>Fecha de Nacimiento:</b>
+                                <h6><?php echo formatoFechaHoraVista($row->Fecha); ?></h6>
+                            </div>
+                            <div class="mb-3">
+                                <b>Contacto:</b>
+                                <h6><?php echo $row->Telefono; ?></h6>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                    <!-- New column for buttons -->
+                    <div class="col-lg-4 text-center">
+                        <button type="button" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#cambiarContrasenaModal">Cambiar Contraseña</button>
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cambiarFotoModal">Cambiar Foto de Perfil</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Change Password -->
+<div class="modal fade" id="cambiarContrasenaModal" tabindex="-1" aria-labelledby="cambiarContrasenaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cambiarContrasenaLabel">Cambiar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+			
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <div class="p-4">
+                            <?php echo form_open_multipart('user/updatepass'); ?>
+                            <div class='col-sm-12 mb-3 mb-sm-0'>
+                                <b>Contraseña Actual:</b>
+                                <input type="password" class="form-control" name="actual" required
+                                    placeholder="Ingrese contraseña actual">
+                                <br>
+                                <b>Nueva Contraseña:</b>
+                                <input type="password" class="form-control" name="nueva" required
+                                    placeholder="Ingrese contraseña nueva" pattern="{8,16}" title="Contraseña con minimo 8 caracteres">
+                                    <br>
+                                <b>Repite la Contraseña:</b>
+                                <input type="password" class="form-control" name="repetido" required
+                                    placeholder="Repita la contraseña" pattern="{8,16}" title="Contraseña con minimo 8 caracteres">
+                                </div>
+                            <hr>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="sumbit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+			<?php echo form_close(); ?>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Change Profile Photo -->
+<div class="modal fade" id="cambiarFotoModal" tabindex="-1" aria-labelledby="cambiarFotoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cambiarFotoLabel">Cambiar Foto de Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+			<div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <div class="p-4">
+                            <?php echo form_open_multipart('user/updatephoto'); ?>
+                            <div class='col-sm-12 mb-3 mb-sm-0'>
+                                <b>Nueva foto:</b>
+                                <input type="file" name="userfile" accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <hr>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+			<?php echo form_close(); ?>
+        </div>
+    </div>
+</div>
+
+<!-- End of Large modal perfil -->
