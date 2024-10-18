@@ -100,7 +100,6 @@ class User_model extends CI_Model {
     //modificar foto usuario
     public function updatePhoto($user){
         $this->db->set('foto', $user->getFoto());
-        //$this->db->set('usuarios', $user->getUsuario());
         $this->db->where('idUsuario',$user->getID());
         $this->db->update('usuarios');
     }

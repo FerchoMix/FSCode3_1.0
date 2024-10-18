@@ -1,19 +1,20 @@
-<!-- Footer -->
 
-		
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="../index.htm" target="_blank">DexignLab</a> 2021</p>
-            </div>
+<!--**********************************
+    Footer start
+***********************************-->
+<footer class="footer bg-light">
+    <div class="container text-center">
+        <div class="copyright">
+            <p class="mb-0">Copyright © Designed by FinsterSystems 2024</p>
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
+    </div>
+</footer>
+<!--**********************************
+    Footer end
+***********************************-->
+
  <!-- logout modal -->
- <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="logoutModal">Basic modal</button>
+ 
                                     <!-- Modal -->
                                     <div class="modal fade" id="logoutModal">
                                         <div class="modal-dialog" role="document">
@@ -32,4 +33,4 @@
                                         </div>
                                     </div>
 
-		<!-- End modal -->
+<!-- End modal -->

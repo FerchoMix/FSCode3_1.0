@@ -33,4 +33,22 @@ class Client_model extends CI_Model {
         $this->db->where('idCliente',$client->getID());
         return $this->db->get();
     }
+     //modificar clientes
+     public function updateClient($client){
+        $this->db->set('cinit', $client->getCI());
+        $this->db->set('nombre', $client->getNombre());
+        $this->db->set('direccion', $client->getDireccion());
+        $this->db->set('contacto', $client->getContacto());
+        $this->db->set('estado',$client->getEstado());
+        $this->db->set('usuario', $client->getUsuario());
+		$this->db->where('idCliente',$client->getID());
+		$this->db->update('clientes');
+	}
+    //cambiar estado de cliente
+    public function deleteClient($client){
+        $this->db->set('estado',$client->getEstado());
+        $this->db->set('usuario',$client->getUsuario());
+        $this->db->where('idCliente',$client->getID());
+		$this->db->update('clientes');
+    }
 }

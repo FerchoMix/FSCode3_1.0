@@ -30,3 +30,4 @@
 	<!-- Datatable -->
     <link href="<?PHP ECHO BASE_URL(); ?>/Template/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
+<body>

@@ -32,7 +32,7 @@ class Menu extends CI_Controller {
 		$this->load->view('general/head.php',$head);
 		$this->load->view('general/topbar.php',$top);
         $this->load->view('sidebars/admin.php');
-		$this->load->view('menus/admin.php',$data);
+		//$this->load->view('menus/admin.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
 	}
@@ -54,9 +54,9 @@ class Menu extends CI_Controller {
 		$lista = $this->sale_model->getStock();
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
-		$this->load->view('sidebars/vendedor.php');
 		$this->load->view('general/topbar.php',$top);
-		$this->load->view('menus/vendedor.php',$data);
+		$this->load->view('sidebars/vendedor.php');
+		//$this->load->view('menus/vendedor.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
 	}

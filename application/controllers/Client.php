@@ -56,4 +56,50 @@ class Client extends CI_Controller {
             redirect('client','refresh');
         }
         }
+		//Carga el popup de Modificar Cliente
+	public function updateclient(){
+		try{
+			$nuevo = new Cliente();
+			$nuevo->setNombre($_POST['nombres']);
+			$nuevo->setCI($_POST['carnet']);
+			$nuevo->setDireccion($_POST['direccion']);
+			$nuevo->setContacto($_POST['contacto']);
+			$nuevo->setEstado(2);
+			$nuevo->setID($_POST['ID']);
+			$nuevo->setUsuario($this->session->userdata('idusuario'));
+			$this->client_model->updateClient($nuevo);
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('client','refresh');
+		}
+		}
+		//Eliminar cliente
+		public function deleteClient(){
+		try{
+			$nuevo = new Cliente();
+			$nuevo->setID($_POST['ID']);
+			$nuevo->setEstado(3);
+			$nuevo->setUsuario($this->session->userdata('idusuario'));
+			$this->client_model->deleteClient($nuevo);
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('client','refresh');
+		}
+		}
+		//Habilitar cliente
+		public function enableClient(){
+		try{
+			$nuevo = new Cliente();
+			$nuevo->setID($_POST['ID']);
+			$nuevo->setEstado(4);
+			$nuevo->setUsuario($this->session->userdata('idusuario'));
+			$this->client_model->deleteClient($nuevo);
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} finally {
+			redirect('client','refresh');
+		}
+		}
 }

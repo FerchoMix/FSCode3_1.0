@@ -1,4 +1,4 @@
-<body>
+
 
     <!--*******************
         Preloader start
@@ -16,29 +16,12 @@
     <!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
-
+	<div id="main-wrapper">
+	
         <!--**********************************
             Nav header start
         ***********************************-->
-		<div class="nav-header">
-            <a href="index.html" class="brand-logo">
-				<svg class="logo-abbr" width="55" height="55" viewbox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M27.5 0C12.3122 0 0 12.3122 0 27.5C0 42.6878 12.3122 55 27.5 55C42.6878 55 55 42.6878 55 27.5C55 12.3122 42.6878 0 27.5 0ZM28.0092 46H19L19.0001 34.9784L19 27.5803V24.4779C19 14.3752 24.0922 10 35.3733 10V17.5571C29.8894 17.5571 28.0092 19.4663 28.0092 24.4779V27.5803H36V34.9784H28.0092V46Z" fill="url(#paint0_linear)"></path>
-					<defs>
-					</defs>
-				</svg>
-				<div class="brand-title">
-					<h2 class="">FS</h2>
-					<span class="brand-sub-title">@soengsouy</span>
-				</div>
-            </a>
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
+
    <!--**********************************
             Nav header end
         ***********************************-->
@@ -54,7 +37,8 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar">
-                                Administrador
+                                FinsterSystems
+								
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -179,6 +163,9 @@
 				</nav>
 			</div>
 		</div>
+	
+		
+		
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -231,13 +218,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Volver</button>
+                
             </div>
         </div>
     </div>
 </div>
-
 <!-- Modal for Change Password -->
 <div class="modal fade" id="cambiarContrasenaModal" tabindex="-1" aria-labelledby="cambiarContrasenaLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -291,19 +277,18 @@
                 <h5 class="modal-title" id="cambiarFotoLabel">Cambiar Foto de Perfil</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+			<?php echo form_open_multipart('user/updatephoto'); ?>
             <div class="modal-body">
 			<div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10">
                         <div class="p-4">
-                            <?php echo form_open_multipart('user/updatephoto'); ?>
+                            
                             <div class='col-sm-12 mb-3 mb-sm-0'>
                                 <b>Nueva foto:</b>
                                 <input type="file" name="userfile" accept=".jpg,.png,.jpeg" required>
                             </div>
                             <hr>
-                            
-                            
                         </div>
                     </div>
                     <div class="col-lg-1"></div>
@@ -312,6 +297,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+				
             </div>
 			<?php echo form_close(); ?>
         </div>
@@ -319,3 +305,4 @@
 </div>
 
 <!-- End of Large modal perfil -->
+

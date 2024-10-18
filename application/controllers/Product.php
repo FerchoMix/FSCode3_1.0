@@ -28,8 +28,9 @@ class Product extends CI_Controller {
 		$lista = $this->sale_model->getStock();
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
-		$this->load->view('sidebars/admin.php');
+		
 		$this->load->view('general/topbar.php',$top);
+        $this->load->view('sidebars/admin.php');
 		$this->load->view('products/lista_products.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
