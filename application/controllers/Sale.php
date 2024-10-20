@@ -148,7 +148,7 @@ class Sale extends CI_Controller {
 		$pdf->AddPage("L");
 		$pdf->Cell(0,7,"",0);
 		$pdf->Ln();
-		$pdf->Image(base_url().'Template/images/logo.jpeg', 30, 10, -300);
+		$pdf->Image(base_url().'Template/images/logo.jpeg', 100, 100, 100);
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(50,7,"",0);
 		$pdf->Ln();
@@ -273,8 +273,8 @@ class Sale extends CI_Controller {
 		$lista=$this->sale_model->listSales($ini,$fin);
 		$pdf = new FPDF();
 		$pdf->AddPage("L");
-		$pdf->Image(base_url().'Template/images/logo.jpeg', 5, 5, -300);
-		$pdf->Image(base_url().'Template/images/finster.jpeg', 235, 5, -300);
+		$pdf->Image(base_url().'Template/images/logo.jpeg', 100, 100, 100);
+		//$pdf->Image(base_url().'Template/images/finster.jpeg', 235, 5, -300);
 		$pdf->SetFont('Arial','B',14);
 		$pdf->Cell(50,7,"",0);
 		$pdf->Ln();

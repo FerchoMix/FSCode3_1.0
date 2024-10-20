@@ -75,5 +75,64 @@ class Product extends CI_Controller {
             redirect('product','refresh');
         }
         }
-
+        //Carga el popup de Modificar producto
+	public function updateproduct(){
+        try{
+            $nuevo = new Producto();
+            $nuevo->setDescripcion($_POST['descripcion']);
+            
+            $nuevo->setPrecio($_POST['precio']);
+            $nuevo->setMarca($_POST['marca']);
+            $nuevo->setCategoria($_POST['categoria']);
+            $nuevo->setID($_POST['ID']);
+            $nuevo->setEstado(2);
+            $nuevo->setUsuario($this->session->userdata('idusuario'));
+            $nuevo->setFoto($nuevo->getID().'.jpg');
+            $config['upload_path']='./upload/productos/';
+            $config['file_name']=$nuevo->getFoto();
+            $config['allowed_types']='jpg|jpeg';
+            $config['overwrite'] = TRUE;
+            $this->load->library('upload',$config);
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('userfile')){
+                $this->product_model->updateProduct($nuevo);
+                $data['error']=$this->upload->display_errors();
+            }else{
+                $this->product_model->updateProduct($nuevo);
+                $this->upload->data();
+            }
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        } finally {
+            redirect('product','refresh');
+        }
+        }
+        public function deleteproduct(){
+            try{
+                $nuevo = new Producto();
+                $nuevo->setID($_POST['ID']);
+                $nuevo->setEstado(3);
+                $nuevo->setUsuario($this->session->userdata('idusuario'));
+                $this->product_model->deleteProduct($nuevo);
+                redirect('product/index','refresh');
+            } catch (Exception $e) {
+                echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+            } finally {
+                redirect('product','refresh');
+            }
+            }
+            public function enableshoe(){
+                try{
+                    $nuevo = new Calzado();
+                    $nuevo->setID($_POST['ID']);
+                    $nuevo->setEstado(4);
+                    $nuevo->setUsuario($this->session->userdata('idusuario'));
+                    $this->shoe_model->deleteShoe($nuevo);
+                    redirect('shoe/index','refresh');
+                } catch (Exception $e) {
+                    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+                } finally {
+                    redirect('shoe','refresh');
+                }
+                }
 }

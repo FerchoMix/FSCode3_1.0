@@ -75,4 +75,5 @@ class Menu extends CI_Controller {
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
 	}
+	
 }

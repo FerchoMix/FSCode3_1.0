@@ -235,4 +235,29 @@
                                     </div>
                                     <?php } ?>
                                     <!-- End Modal Crear Usuario -->
-                                
+                                <!-- Modal Deshabilitar--> 
+                                <?php foreach ($clientes->result() as $row){ ?>
+                                    <div class="modal fade" id="deshabilitarCliente<?php echo $row->ID; ?>" >
+                                        <div class="modal-dialog modal-dialog-centered" role="dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                    </button>
+                                                </div>
+                                                <?php echo form_open_multipart('client/deleteClient'); ?>
+                                                        <div>    
+                                                            <input type="hidden" name="ID" value="<?php echo $row->ID; ?>">
+                                                        </div>
+                                                <div class="modal-body">
+                                                    <h3>¿Estas seguro de dar de baja al cliente?</h3>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">No</button>
+                                                    <button type="submit" class="btn btn-primary">Si</button>
+                                                </div>
+                                                <?php echo form_close(); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                <!--End Modal Deshabilitar--> 

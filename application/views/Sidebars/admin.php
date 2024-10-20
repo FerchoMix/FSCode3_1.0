@@ -68,6 +68,27 @@
                     <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/buy/buylist">Ver Entradas</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span class="nav-text">Reportes</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/report/">Reporte 1</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/report/">Reporte 2</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/report/">Reporte 3</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/report/">Reporte 4</a></li>
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a class="collapse-item" href="<?php echo base_url(); ?>index.php/report/">Reporte 5</a></li>
+                </ul>
+            </li>
         </ul>
 
         <!-- Espaciado -->

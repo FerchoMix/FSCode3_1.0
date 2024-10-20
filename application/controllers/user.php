@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller{
     public function index(){
@@ -52,43 +54,43 @@ class User extends CI_Controller{
 	public function createuser() {
 		try {
 			$nuevo = new Usuario();
+			// Establecer detalles del usuario
 			$nuevo->setApellido($_POST['apellidos']);
 			$nuevo->setNombre($_POST['nombres']);
 			$nuevo->setCI($_POST['carnet']);
 			$nuevo->setFechaNacimiento($_POST['fechaNacimiento']);
 			$nuevo->setTelefono($_POST['contacto']);
 			$nuevo->setTipo($_POST['tipo']);
-			
+	
 			// Crear login y contraseña
 			$login = strtolower(substr($_POST['nombres'], 0, 3)) . $_POST['carnet'];
 			$nuevo->setLogin($login);
+			$password1=$login;
 			$password = md5($login); // Considera usar un algoritmo de hash más fuerte
 			$nuevo->setPassword($password);
-			
+	
 			// Establecer otros detalles del usuario
 			$nuevo->setUsuario($this->session->userdata('idusuario'));
 			$nuevo->setFoto($this->session->userdata('foto'));
 			$nuevo->setEmail($_POST['correo']);
 			$nuevo->setGenero($_POST['gen']);
-			
+	
 			// Verificar si el usuario ya existe
 			$users = $this->user_model->getUsersCi($nuevo);
 			
 			if ($users->num_rows() > 0) {
 				$this->session->set_flashdata('existe', TRUE);
 				redirect('user/index', 'refresh');
-				return; // Salir de la función para evitar más ejecuciones
+				return;
 			} else {
 				// Insertar nuevo usuario en la base de datos
 				$this->user_model->insertUser($nuevo);
 				$this->session->set_flashdata('nuevo', $login);
 	
 				// Enviar credenciales al correo del usuario
-				if ($this->sendCredentials($_POST['correo'], $login, $password)) {
-					// Opcional: establecer un mensaje de éxito para el envío del correo
+				if ($this->sendCredentials($_POST['correo'], $login, $password1)) {
 					$this->session->set_flashdata('email_sent', TRUE);
 				} else {
-					// Opcional: manejar el fallo en el envío del correo
 					$this->session->set_flashdata('email_failed', TRUE);
 				}
 			}
@@ -102,18 +104,47 @@ class User extends CI_Controller{
 	}
 	
 	private function sendCredentials($email, $login, $password) {
-		// Preparar el contenido del correo electrónico
-		$subject = "Tus Credenciales de Cuenta";
-		$message = "Hola,\n\nTu cuenta ha sido creada exitosamente.\n\n";
-		$message .= "Usuario: " . $login . "\n";
-		// Nota: Podrías querer enviar la contraseña en texto plano en lugar de la versión hasheada.
-		// Por razones de seguridad, considera enviar un enlace para restablecer la contraseña.
-		$message .= "Contraseña: " . md5($password) . "\n\n"; 
-		$message .= "Saludos cordiales,\nTu Equipo";
+		
 	
-		// Usar la función mail de PHP o una biblioteca externa como PHPMailer
-		return mail($email, $subject, $message);
+		require 'vendor/autoload.php'; // Ajusta la ruta si no usas Composer
+	
+		$mail = new PHPMailer(true); // Crear una instancia de PHPMailer
+	
+		try {
+			// Configuración del servidor SMTP
+			$mail->isSMTP(); // Establecer el uso de SMTP
+			$mail->Host = 'smtp.gmail.com'; // Especificar el servidor SMTP
+			$mail->SMTPAuth = true; // Habilitar autenticación SMTP
+			$mail->Username = 'finstersystems2024@gmail.com'; // Tu dirección de correo
+			$mail->Password = 'vzwq ewfu oaxr lytp'; // Tu contraseña
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Habilitar encriptación TLS
+			$mail->Port = 587; // Puerto TCP a usar
+	
+			// Remitente y destinatario
+			$mail->setFrom('finsterSystems2024@gmail.com', 'Tu Nombre');
+			$mail->addAddress($email, 'Nombre Destinatario'); // Añadir un destinatario
+	
+			// Contenido del correo
+			$mail->isHTML(true); // Establecer formato HTML
+			$mail->Subject = 'Tus Credenciales de Cuenta';
+			$message = "Hola,\n\nTu cuenta ha sido creada exitosamente.\n\n";
+			$message .= "Usuario: " . $login . "\n";
+			// Nota: Podrías querer enviar la contraseña en texto plano en lugar de la versión hasheada.
+			$message .= "Contraseña: ".$password . "\n\n"; 
+			$message .= "Saludos cordiales,\nTu Equipo";
+			
+			$mail->Body    = nl2br($message); // Convertir saltos de línea a <br>
+			$mail->AltBody = strip_tags($message); // Contenido alternativo sin HTML
+	
+			$mail->send();
+			return true; // El correo se envió correctamente
+		} catch (Exception $e) {
+			echo "El mensaje no pudo ser enviado. Error: {$mail->ErrorInfo}";
+			return false; // El correo no se envió
+		}
 	}
+	
+	
     //Carga el popup de Modificar Usuario
 	public function updateuser(){
 		try{

@@ -60,10 +60,10 @@ class Client extends CI_Controller {
 	public function updateclient(){
 		try{
 			$nuevo = new Cliente();
-			$nuevo->setNombre($_POST['nombres']);
-			$nuevo->setCI($_POST['carnet']);
+			$nuevo->setNombre($_POST['razonSocial']);
+            $nuevo->setCI($_POST['ciNit']);
 			$nuevo->setDireccion($_POST['direccion']);
-			$nuevo->setContacto($_POST['contacto']);
+            $nuevo->setTelefono($_POST['contacto']);
 			$nuevo->setEstado(2);
 			$nuevo->setID($_POST['ID']);
 			$nuevo->setUsuario($this->session->userdata('idusuario'));

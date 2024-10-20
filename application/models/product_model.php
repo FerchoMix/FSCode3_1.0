@@ -46,7 +46,8 @@ class Product_model extends CI_Model {
                    P.foto AS Foto, 
                    P.precio AS Precio, 
                    M.nombre AS Marca, 
-                   P.almacen AS Almacen, 
+                   P.almacen AS Almacen,
+                   P.estado AS Estado, 
                    CA.nombre AS Categoria');
     $this->db->from('productos P');
     $this->db->join('categorias CA', 'CA.idCategoria = P.idCategoria', 'inner');
@@ -71,5 +72,24 @@ return $this->db->get();
         $this->db->set('almacen', $alm);
 		$this->db->where('idProducto',$pro->getProducto());
 		$this->db->update('productos');
+    }
+     //modificar productos
+     public function updateProduct($pro){
+        $this->db->set('descripcion', $pro->getDescripcion());
+        $this->db->set('idCategoria', $pro->getCategoria());
+        $this->db->set('foto', $pro->getFoto());
+        $this->db->set('precio', $pro->getPrecio());
+        $this->db->set('idMarca', $pro->getMarca());
+        $this->db->set('estado', $pro->getEstado());
+        //$this->db->set('usuario', $pro->getUsuario());
+		$this->db->where('idProducto',$pro->getID());
+		$this->db->update('productos');
+	}
+    //cambiar estado de productos
+    public function deleteProduct($pro){
+        $this->db->set('estado',$pro->getEstado());
+        //$this->db->set('usuario',$pro->getUsuario());
+        $this->db->where('idProducto',$pro->getID());
+        $this->db->update('productos');
     }
 }

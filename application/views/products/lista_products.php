@@ -36,6 +36,7 @@
                                                 <th>Precio Bs.</th>
                                                 <th>Marca</th>
                                                 <th>En Almacen</th>
+                                                <th>Estado</th>
                                                  <th><b>Acciones</b></th> 
                                             </tr>
                                         </thead>
@@ -51,13 +52,14 @@
                                             <td><?php echo $row->Precio; ?></td>
                                             <td><?php echo $row->Marca; ?></td>
                                             <?php if($row->Almacen < 10){ $color = "red"; } else {$color = "black"; } ?>
+                                            <td><?php echo formatoEstado($row->Estado); ?></td>
                                             <td>
                                                 <b style="color:<?php echo $color; ?>;"><?php echo $row->Almacen; ?></b></td>
                                             <td>                        
                             
 													<div class="d-flex">
-                                                        <button type="submit" class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarProducto<?php echo $row->ID; ?>"><i class="fas fa-edit"></i></button>
-                                                       <button type="submit" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarProducto<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
+                                                        <button type="submit" class="btn btn-primary shadow btn-sm sharp me-1" data-bs-toggle="modal" data-bs-target="#modificarProducto<?php echo $row->ID; ?>"><i class="fas fa-edit"></i></button>
+                                                       <button type="submit" class="btn btn-danger shadow btn-sm sharp" data-bs-toggle="modal" data-bs-target="#deshabilitarProducto<?php echo $row->ID; ?>"><i class="fas fa-user-times"></i></button>
 													</div>
                             
 											</td>
@@ -180,7 +182,7 @@
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Agregar Producto</h5>
+                                                    <h5 class="modal-title">Modificar Producto</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                     </button>
                                                     </div>
@@ -202,7 +204,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <input type="text" class="form-control form-control-user" name="descripcion"
                                                                                             placeholder="Descripcion del producto" required pattern="[0-9,ñ,Ñ,A-Z,a-z,\ ]{0,50}"
-                                                                                            title="" >
+                                                                                            title="" value="<?php echo $row->Descripcion; ?>" >
                                                                                     </div>
                                                                                 </div>
                                                                                 
@@ -213,7 +215,7 @@
                                                                                     <div class="col-sm-12">
                                                                                     
                                                                                     <select class="default-select wide form-control" required name="marca">
-                                                                                    <option data-display="Selecciona una marca">Selecciona una marca</option>
+                                                                                    <option data-display="Selecciona una marca" value="<?php echo $row->Marca; ?>">Selecciona una marca</option>
                                                                                     <?php foreach ($marcas->result() as $row1){ ?>
                                                                                         <option value="<?php echo $row1->ID; ?>"><?php echo $row1->Nombre; ?></option>
                                                                                             
@@ -247,7 +249,7 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-10">
-                                                                                    <input type="number" class="form-control" name="precio" min="0" >
+                                                                                    <input type="number" class="form-control" name="precio" min="0" value="<?php echo $row->Precio; ?>">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="mb-3 row">
@@ -255,7 +257,7 @@
                                                                                         <span class="text-danger">*</span>
                                                                                     </label>
                                                                                     <div class="col-lg-12">
-                                                                                    <input type="file" name="userfile" accept=".png,.jpeg,.jpg">
+                                                                                    <input type="file" name="userfile" accept=".png,.jpeg,.jpg" value="<?php echo $row->Foto; ?>">
                                                                                     
                                                                                     </div>
                                                                                 </div>
@@ -264,7 +266,7 @@
                                                         
                                                             <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-primary btn-user">Agregar</button>
+                                                        <button type="submit" class="btn btn-primary btn-user">Modificar</button>
                                                             </div>
                                                         <?php echo form_close(); ?>
                                                         </div> 
@@ -275,3 +277,29 @@
                                         </div>
                                     </div>
                                     <?php } ?>                                    
+                                     <!-- Modal Deshabilitar--> 
+                                <?php foreach ($productos->result() as $row){ ?>
+                                    <div class="modal fade" id="deshabilitarProducto<?php echo $row->ID; ?>" >
+                                        <div class="modal-dialog modal-dialog-centered" role="dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                    </button>
+                                                </div>
+                                                <?php echo form_open_multipart('product/deleteproduct'); ?>
+                                                        <div>    
+                                                            <input type="hidden" name="ID" value="<?php echo $row->ID; ?>">
+                                                        </div>
+                                                <div class="modal-body">
+                                                    <h3>¿Estas seguro de eliminar el producto?</h3>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">No</button>
+                                                    <button type="submit" class="btn btn-primary">Si</button>
+                                                </div>
+                                                <?php echo form_close(); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+                                <!--End Modal Deshabilitar--> 

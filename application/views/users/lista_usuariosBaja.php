@@ -42,7 +42,7 @@
                                             {
                                             ?>
                                             <tr>
-                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>upload/usuaios/<?php echo $row->Foto; ?>" alt=""></td>
+                                            <td><img class="rounded-circle" width="35" src="<?PHP ECHO BASE_URL(); ?>upload/usuarios/<?php echo $row->Foto; ?>" alt=""></td>
                                             <td><?php echo $row->Nombre; ?></td>
                                             <td><?php echo $row->Apellidos; ?></td>
                                             <td><?php echo $row->Telefono; ?></td>
@@ -65,8 +65,8 @@
 													<div class="d-flex">
 														
                                                        
-														<button type="submit" class="btn btn-success shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#habilitarUsuario<?php echo $row->ID; ?>"><i class="fas fa-user-check"></i></button>
-                                                        <button type="submit" class="btn btn-danger shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>"><i class="fas fa-trash-alt"></i></button>
+														<button type="submit" class="btn btn-success shadow btn-sm sharp" data-bs-toggle="modal" data-bs-target="#habilitarUsuario<?php echo $row->ID; ?>"><i class="fas fa-user-check"></i></button>
+                                                        <button type="submit" class="btn btn-danger shadow btn-sm sharp me-1" data-bs-toggle="modal" data-bs-target="#eliminarUsuario<?php echo $row->ID; ?>"><i class="fas fa-trash-alt"></i></button>
                                                         
 													</div>
                             

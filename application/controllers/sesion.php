@@ -75,7 +75,7 @@ class Sesion extends CI_Controller {
             $this->verificar_sesion();
 
             switch($this->session->userdata('tipo')) {
-                case 0:
+                case 0 :
                     redirect('menu/ven', 'refresh');
                     break;
                 case 1:
