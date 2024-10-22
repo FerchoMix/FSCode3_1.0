@@ -73,6 +73,7 @@
 @import url(../vendor/aos/css/aos.min.css);
 @import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(../vendor/metismenu/css/metisMenu.min.css);
+ 
 :root {
   --primary: #886CC0;
   --secondary: #FFA7D7;
@@ -93,7 +94,7 @@
   --title: #000;
   --gradient-one: linear-gradient(180deg, #FFA26D 0%, #FFCF6D 100%);
   --tryal-gradient:linear-gradient(212.43deg, #886CC0 19.43%, #AA6CC0 87.63%); }
-
+ 
 .gradient_one {
   background-image: linear-gradient(to right, rgba(186, 1, 181, 0.85) 0%, rgba(103, 25, 255, 0.85) 100%); }
 
@@ -1969,14 +1970,14 @@ progress {
     color: #6c757d;
     opacity: 1; }
   .form-control:disabled, .form-control[readonly] {
-    background-color: #e9ecef;
+    background-color: #7eb0e1;
     opacity: 1; }
   .form-control::file-selector-button {
     padding: 0.375rem 0.75rem;
     margin: -0.375rem -0.75rem;
     margin-inline-end: 0.75rem;
     color: #393939;
-    background-color: #e9ecef;
+    background-color: #88bcf1;
     pointer-events: none;
     border-color: inherit;
     border-style: solid;
@@ -2137,6 +2138,7 @@ textarea.form-control-lg {
     border-radius: 0.25em; }
   .form-check-input[type="radio"] {
     border-radius: 50%; }
+  
   .form-check-input:active {
     filter: brightness(90%); }
   .form-check-input:focus {
@@ -19634,7 +19636,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   height: 21.875rem; }
 
 .form-control {
-  background: #fff;
+  background: #F2DDB2;
   border: 0.0625rem solid #f5f5f5;
   padding: 0.3125rem 1.25rem;
   color: #6e6e6e;
@@ -19645,7 +19647,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       height: 3rem; } }
   .form-control:hover, .form-control:focus, .form-control.active {
     box-shadow: none;
-    background: #fff;
+    background: #ffc592;
     color: #6e6e6e; }
   .form-control:focus {
     border-color: var(--primary); }
@@ -19777,7 +19779,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 .form-control:disabled,
 .form-control[readonly] {
-  background: #fff;
+  background: #c8f2968c;
   opacity: 1; }
 
 .form-file {
@@ -20241,7 +20243,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   border-radius: 1.25rem;
   border: 0.0625rem solid #c8c8c8;
   height: 2.5rem;
-  background: #fff; }
+  background: #F2DDB2; }
   [data-theme-version="dark"] .select2-container--default .select2-selection--single {
     background: #161717;
     border-color: #2B2B2B; }
@@ -29152,5 +29154,6 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: transparent; }
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
-
+      
+    
 /*# sourceMappingURL=style.css.map */

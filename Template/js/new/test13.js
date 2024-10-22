@@ -106,3 +106,42 @@ function calibrarComIDs(){
     }
     document.getElementById("comArrPro").value = arreglo;
 }
+function cargarClientes() {
+    $.ajax({
+        url: 'ruta/a/tu/api/clientes', // Cambia esto a la ruta correcta
+        method: 'GET',
+        success: function(data) {
+            let tabla = $('#tablaClientes');
+            tabla.empty(); // Limpiar tabla antes de llenarla
+            data.forEach(cliente => {
+                tabla.append(`
+                    <tr>
+                        <td>${cliente.nombre}</td>
+                        <td>${cliente.ci}</td>
+                        <td><button class="btn btn-primary seleccionarCliente" data-id="${cliente.id}" data-nombre="${cliente.nombre}">Seleccionar</button></td>
+                    </tr>
+                `);
+            });
+        }
+    });
+}
+$('#buscadorCliente').on('keyup', function() {
+    let valor = $(this).val().toLowerCase();
+    $('#tablaClientes tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(valor) > -1);
+    });
+});
+$(document).on('click', '.seleccionarCliente', function() {
+    let idCliente = $(this).data('id');
+    let nombreCliente = $(this).data('nombre');
+
+    // Actualizar los campos del formulario
+    $('input[name="idCli"]').val(idCliente);
+    $('input[type="text"][disabled]').val(nombreCliente); // Cambia el valor del campo de texto
+
+    // Cerrar el modal
+    $('#seleccionarClienteModal').modal('hide');
+});
+$('#seleccionarClienteModal').on('show.bs.modal', function() {
+    cargarClientes(); // Llamar a la función para cargar clientes
+});

@@ -26,6 +26,13 @@ class Client_model extends CI_Model {
         //$this->db->set('usuario', $client->getUsuario());
 		$this->db->insert('clientes');
 	}
+    public function getAllClients() {
+        $this->db->select('*'); // Seleccionar todas las columnas
+        $this->db->from('clientes'); // Cambia 'clientes' por el nombre real de tu tabla
+        $query = $this->db->get(); // Ejecutar la consulta
+
+        return $query; // Devolver el resultado
+    }
     //buscar cliente por ID
     public function searchClient($client){
         $this->db->select('idCliente AS ID,cinit AS CI,nombre AS Nombre,direccion AS Direccion,

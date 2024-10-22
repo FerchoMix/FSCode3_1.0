@@ -112,7 +112,7 @@ class Sale_model extends CI_Model {
     //recuperar stock
     public function getStock() {
         // Seleccionando los campos deseados de las tablas unidas
-        $this->db->select('p.descripcion, m.nombre AS marca, p.almacen');
+        $this->db->select('CONCAT(p.descripcion,"-" ,m.nombre)AS Producto,almacen AS Almacen');
         
         // Desde la tabla productos
         $this->db->from('productos AS p');
@@ -124,7 +124,7 @@ class Sale_model extends CI_Model {
         $this->db->where('p.almacen <', 20);
         
         // Ejecutando la consulta y devolviendo el resultado
-        return $this->db->get()->result();
+        return $this->db->get();
     }
     
 }

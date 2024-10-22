@@ -4,6 +4,13 @@ var proAllVen = document.getElementById("venLista");
 document.getElementById("venAgrPro").onclick = cargarProductosVen;
 document.getElementById("venAgregar").onclick = agregarProductoVen;
 document.getElementById("venGenVen").onclick = mostrarArreglosVen;
+// Evento para actualizar el campo CI/NIT al seleccionar un cliente
+document.getElementById("clienteSelect").onchange = function() {
+    var selectedOption = this.options[this.selectedIndex];
+    var ciNitValue = selectedOption.getAttribute('data-ci'); // Obtener el CI/NIT del atributo data-ci
+    document.getElementById('ciNit').value = ciNitValue; // Actualizar el campo CI/NIT
+    document.getElementById('clienteNombre').value = selectedOption.text; // Actualizar el nombre del cliente
+}
 function cargarProductosVen(){
     var miSelect = document.getElementById("venProducto");
     while (miSelect.firstChild) {
@@ -39,7 +46,7 @@ function agregarProductoVen(){
         }
         $('table tbody').append(`
         <tr>
-            <td>${descripcion+"- "+marca}</td>
+            <td>${descripcion+":-"+marca}</td>
             <td><input id="detVenGlo${ID}" name="glosa${ID}" type="text" pattern="[ñ,Ñ,A-Z,a-z,\ ]{0,255}" class="form-control" value="glosa${ID}"></td>
             <td><b style="color:${color};">${max}</b></td>
             <td><input id="detVenCan${ID}" name="cantidad${ID}" onchange="calibrarVen(${ID})" type="number" min="0" max=${max} class="form-control" value=0 required></td>
@@ -112,3 +119,42 @@ function calibrarVenIDs(){
     }
     document.getElementById("venArrPro").value = arreglo;
 }
+function cargarClientes() {
+    $.ajax({
+        url: 'ruta/a/tu/api/clientes', // Cambia esto a la ruta correcta
+        method: 'GET',
+        success: function(data) {
+            let tabla = $('#tablaClientes');
+            tabla.empty(); // Limpiar tabla antes de llenarla
+            data.forEach(cliente => {
+                tabla.append(`
+                    <tr>
+                        <td>${cliente.nombre}</td>
+                        <td>${cliente.ci}</td>
+                        <td><button class="btn btn-primary seleccionarCliente" data-id="${cliente.id}" data-nombre="${cliente.nombre}">Seleccionar</button></td>
+                    </tr>
+                `);
+            });
+        }
+    });
+}
+$('#buscadorCliente').on('keyup', function() {
+    let valor = $(this).val().toLowerCase();
+    $('#tablaClientes tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(valor) > -1);
+    });
+});
+$(document).on('click', '.seleccionarCliente', function() {
+    let idCliente = $(this).data('id');
+    let nombreCliente = $(this).data('nombre');
+
+    // Actualizar los campos del formulario
+    $('input[name="idCli"]').val(idCliente);
+    $('input[type="text"][disabled]').val(nombreCliente); // Cambia el valor del campo de texto
+
+    // Cerrar el modal
+    $('#seleccionarClienteModal').modal('hide');
+});
+$('#seleccionarClienteModal').on('show.bs.modal', function() {
+    cargarClientes(); // Llamar a la función para cargar clientes
+});

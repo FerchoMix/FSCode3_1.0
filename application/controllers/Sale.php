@@ -11,7 +11,8 @@ class Sale extends CI_Controller {
 		$cli = new Cliente();
 		$user = new Usuario();
 		$venta = new Venta();
-		$cli->setID($_POST['ID']);
+		//$cli->setID($_POST['ID']);
+		$data['clientes'] = $this->client_model->getAllClients();
 		$user->setID($this->session->userdata('idusuario'));
 		$cliRec=$this->client_model->searchClient($cli);
 		$userRec=$this->user_model->searchUser($user);
@@ -42,12 +43,63 @@ class Sale extends CI_Controller {
 		
 		$this->session->set_flashdata('stock',$lista);
 		$this->load->view('general/head.php',$head);
+		$this->load->view('general/topbar.php',$top);
 		if($this->session->userdata('tipo') == "Administrador" || $this->session->userdata('tipo') == 1){
 			$this->load->view('sidebars/admin.php');
 		}else{
 			$this->load->view('sidebars/vendedor.php');
 		}
+		
+		$this->load->view('sales/nueva_venta.php',$data);
+		$this->load->view('general/footer.php');
+		$this->load->view('general/scripts.php');
+    }
+	public function index2(){
+		$head['valor'] = array('Administrador','Vendedor');
+		$data['mensaje'] ='Venta nueva';
+		$head['titulo'] = 'Ventas';
+		$cli = new Cliente();
+		$user = new Usuario();
+		$venta = new Venta();
+		$cli->setID($_POST['ID']);
+		$data['clientes'] = $this->client_model->getAllClients();
+		$user->setID($this->session->userdata('idusuario'));
+		$cliRec=$this->client_model->searchClient($cli);
+		$userRec=$this->user_model->searchUser($user);
+		foreach ($cliRec->result() as $row){
+			$cli->setCI($row->CI);
+			$cli->setNombre($row->Nombre);
+			$cli->setEstado($row->Estado);
+		}
+		foreach ($userRec->result() as $row){
+			$user->setCI($row->CI);
+			$user->setNombre($row->Nombre);
+			$user->setApellido($row->Apellido);
+		}
+		foreach(($this->sale_model->getSaleID())->result() as $row){
+			$venta->setID(($row->ID)+1);
+		}
+		$lista=$this->product_model->listProducts();
+		$data['cliente']=$cli;
+		$data['vendedor']=$user;
+		$data['nroVenta']=$venta->getID();
+		$data['productos']=$lista;
+		$data['sucursales'] = $this->sale_model->getSucursales();
+		$nuevo = new Usuario();
+		$nuevo->setID($this->session->userdata('idusuario'));
+		$perfiles=$this->user_model->getPerfil($nuevo);
+		$top['perfil'] = $perfiles;
+		$lista = $this->sale_model->getStock();
+		
+		$this->session->set_flashdata('stock',$lista);
+		$this->load->view('general/head.php',$head);
 		$this->load->view('general/topbar.php',$top);
+		if($this->session->userdata('tipo') == "Administrador" || $this->session->userdata('tipo') == 1){
+			$this->load->view('sidebars/admin.php');
+		}else{
+			$this->load->view('sidebars/vendedor.php');
+		}
+		
 		$this->load->view('sales/nueva_venta.php',$data);
 		$this->load->view('general/footer.php');
 		$this->load->view('general/scripts.php');
@@ -90,6 +142,14 @@ class Sale extends CI_Controller {
     public function createsale(){
 		try{
 			$ven = new Venta();
+			$cli = new Cliente();
+			/*$cli->setID($_POST['idCli']);
+			$cliRec=$this->client_model->searchClient($cli);
+			foreach ($cliRec->result() as $row){
+				$cli->setCI($row->CI);
+				$cli->setNombre($row->Nombre);
+				$cli->setEstado($row->Estado);
+			}*/
 			$ven->setID($_POST['nroVenta']);
 			$ven->setTotal($_POST['totalPagar']);
 			$ven->setCantidad($_POST['cantidadTotal']);
@@ -319,5 +379,9 @@ class Sale extends CI_Controller {
 		$this->session->set_flashdata('fechaDesde',$_POST["ini1"]);
 		$this->session->set_flashdata('fechaHasta',$_POST["fin1"]);
 		redirect('sale/salelist','refresh');
+	}
+	public function getClientes() {
+		$clientes = $this->client_model->getAllClients(); // Asegúrate de tener este método en tu modelo
+		echo json_encode($clientes->result());
 	}
 }
