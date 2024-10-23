@@ -88,19 +88,8 @@
         }
         return $valor;
     }
-    function verificarTipo($tipo,$valor){
-        $res=0;
-        $longitud=count($valor);
-        for($i=0; $i<$longitud; $i++){
-            if($tipo==$valor[$i]){
-                $res++;
-            }
-        }
-        if($res>0){
-            return TRUE;
-        }else{
-            return FALSE;
-        }
+    function verificarTipo($tipo, $valor) {
+        return in_array($tipo, $valor); // Verifica si el tipo está en el array
     }
     function verificarExtension($archivo){
         $res="";

@@ -4,7 +4,7 @@ class Client extends CI_Controller {
 	public function index()
     {
         $head['titulo'] = 'Clientes';
-		$head['valor'] = array('Administrador','Vendedor');
+		$head['valor'] = array(1,0);
 		if($this->session->flashdata('existe')){
 			$data['mensaje'] ='¡¡¡El cliente que quiere agregar ya existe!!!';
 		}else{

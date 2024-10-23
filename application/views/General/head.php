@@ -1,6 +1,45 @@
+<?php
+// Camuflador para no ingresar a las direcciones
+if (!$this->session->userdata('login')) {
+    redirect('sesion/index', 'refresh'); // Redirige a la página de inicio de sesión si no está logueado
+} else {
+    // Obtiene el tipo de usuario
+    $tipoUsuario = $this->session->userdata('tipo');
+    
+    // Verifica si ya estás en la página correcta
+    $currentUrl = uri_string(); // Obtiene la URL actual
+// Justo antes del switch en el head
+echo "Estado de login: " . var_export($this->session->userdata('login'), true) . "\n";
+echo "Tipo de usuario: " . var_export($this->session->userdata('tipo'), true) . "\n";
+
+    switch ($tipoUsuario) {
+        case 0: // Vendedor
+            if ($currentUrl !== 'menu/ven') {
+                redirect('menu/ven', 'refresh');
+            }
+            break;
+        case 1: // Administrador
+            if ($currentUrl !== 'menu/adm') {
+                redirect('menu/adm', 'refresh');
+            }
+            break;
+        case 2: // Almacén
+            if ($currentUrl !== 'menu/alm') {
+                redirect('menu/alm', 'refresh');
+            }
+            break;
+        default:
+            $this->session->sess_destroy(); // Destruye la sesión si el tipo no es válido
+            redirect('sesion/index/3', 'refresh'); // Redirige a la página de error
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="">

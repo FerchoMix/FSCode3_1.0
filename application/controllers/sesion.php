@@ -37,45 +37,36 @@ class Sesion extends CI_Controller {
             $usuario->setLogin($_POST['login']);
             $usuario->setPassword(md5($_POST['password']));
             $user = $this->user_model->searchUserLp($usuario);
-
+    
             if ($user->num_rows() > 0) {
-                foreach($user->result() as $row) {
-                    if ($row->Estado == 3) {
-                        redirect('sesion/index/2', 'refresh');
-                    } else {
-                        // Establecer datos en la sesión
-                        $this->session->set_userdata('idusuario', $row->ID);
-                        $this->session->set_userdata('login', $row->Login);
-                        $this->session->set_userdata('tipo', $row->Tipo);
-                        $this->session->set_userdata('foto', $row->Foto); // Agregar la foto a la sesión
-                        redirect('sesion/panel', 'refresh');
-                    }       
-                }
+                $row = $user->row(); // Obtener solo una fila
+                if ($row->Estado == 3) {
+                    redirect('sesion/index/2', 'refresh');
+                } else {
+                    // Establecer datos en la sesión
+                    $this->session->set_userdata('idusuario', $row->ID);
+                    $this->session->set_userdata('login', $row->Login);
+                    $this->session->set_userdata('tipo', $row->Tipo);
+                    $this->session->set_userdata('foto', $row->Foto); // Agregar la foto a la sesión
+                    redirect('sesion/panel', 'refresh');
+                }       
             } else {
                 redirect('sesion/index/1', 'refresh');
             }
             
         } catch(Exception $e) {
             echo 'Excepción capturada: ', $e->getMessage(), "\n";
-        } finally {
-            redirect('sesion/index', 'refresh');
         }
     }
+    
 
-    // Método para verificar sesión
-    private function verificar_sesion() {
-        if (!$this->session->userdata('login')) {
-            redirect('sesion/index', 'refresh');
-        }
-    }
+    
+   
 
     public function panel() {
         try {
-            // Verificar si la sesión está activa
-            $this->verificar_sesion();
-
             switch($this->session->userdata('tipo')) {
-                case 0 :
+                case 0:
                     redirect('menu/ven', 'refresh');
                     break;
                 case 1:
@@ -92,6 +83,7 @@ class Sesion extends CI_Controller {
             echo 'Excepción capturada: ',  $e->getMessage(), "\n";
         }
     }
+    
 
     public function logout() {
         try {

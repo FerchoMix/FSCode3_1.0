@@ -6,12 +6,14 @@
     <!--**********************************
         Scripts
     ***********************************-->
+	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Required vendors -->
     <script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/global/global.min.js"></script>
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/chart.js/Chart.bundle.min.js"></script>
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	<script src="<?PHP ECHO BASE_URL(); ?>/template/vendor/select2/js/select2.full.min.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/template/js/plugins-init/select2-init.js"></script>
+	
 	<!-- Apex Chart -->
 	<script src="<?PHP ECHO BASE_URL(); ?>/Template/vendor/apexchart/apexchart.js"></script>
 	
@@ -80,7 +82,7 @@
 		
 	</script>
 	<!-- New -->
-    <!-- <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/test13.js"></script>-->
+    <<script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/test13.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/test25.js"></script>
     <script src="<?PHP ECHO BASE_URL(); ?>/template/js/new/btab5.js"></script>
 	

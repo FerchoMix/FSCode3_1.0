@@ -165,7 +165,7 @@
 </div>
 
 <div class="modal fade" id="agregarProductosVen">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Agregar Producto</h5>
@@ -173,8 +173,9 @@
             </div>
             <div class="modal-body">
                 <!-- Selección de producto -->
-                Producto:
-                <select class="form-control" id="venProducto" required></select>                                     
+                <label for="">Producto:</label>
+                <select class="select2-width-75"  id="venProducto" required>
+                </select>                                     
             </div>
             <div class="modal-footer">
                 <!-- Botones del modal -->

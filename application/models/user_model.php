@@ -9,7 +9,6 @@ class User_model extends CI_Model {
         $this->db->from('usuarios');
         $this->db->where('Login',$user->getLogin());
         $this->db->where('Password',$user->getPassword());
-        //$this->db->where('Foto',$user->getFoto());
         return $this->db->get();
     }
     //buscar perfil f

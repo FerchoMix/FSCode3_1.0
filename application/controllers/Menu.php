@@ -16,7 +16,7 @@ class Menu extends CI_Controller {
 	//redirige a la vista del menu del Administrador
 	public function adm(){
 		$head['titulo'] = 'Menú';
-		$head['valor'] = array('Administrador');
+		$head['valor'] = 1;
 		if($this->session->userdata('respuesta')){
 			$data['respuesta'] = $this->session->userdata('respuesta');	
 		}else{
@@ -39,7 +39,7 @@ class Menu extends CI_Controller {
 	//redirige a la vista del menu del Vendedor
 	public function ven(){
 		$head['titulo'] = 'Menú';
-		$head['valor'] = array('Vendedor');
+		$head['valor'] = 0;
 		if($this->session->flashdata('respuesta')){
 			echo $this->session->flashdata('respuesta');
 			$data['respuesta'] = $this->session->flashdata('respuesta');	
